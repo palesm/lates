@@ -9,14 +9,17 @@
 <script>
     import LateForm from "./LateForm";
     import LateList from "./LateList";
-    import api from "./backend-api";
+
     export default {
         name: 'lates',
         components: {LateList, LateForm},
         methods: {
             generateLates() {
-                api.generateLates()
-            }
+                this.$store.dispatch("generateLates")
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
         }
     }
 

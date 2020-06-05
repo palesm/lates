@@ -7,11 +7,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         lateList: [],
-        statList: []
+        statList: [],
     },
     getters: {
         lateList: state => state.lateList,
-        statList: state => state.statList
+        statList: state => state.statList,
     },
     mutations: {
         lateList(state, lateList) {
@@ -33,7 +33,10 @@ export default new Vuex.Store({
         },
         getStatList(context) {
             api.getStats().then(res => context.commit("statList", res.data))
-        }
+        },
+        generateLates(context) {
+            api.generateLates().then(() => context.dispatch("getLateList"))
+        },
     },
 
 })
